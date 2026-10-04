@@ -46,13 +46,14 @@ unsigned long ldfile_output_machine;
 enum bfd_architecture ldfile_output_architecture;
 search_dirs_type *search_head;
 
+
 #ifdef VMS
-static char *slash = "";
+    static char *slash = "";
 #else
 #if defined (_WIN32) && !defined (__CYGWIN32__)
-static char *slash = "\\";
+    static char *slash = "\\";
 #else
-static char *slash = "/";
+    static char *slash = "/";
 #endif
 #endif
 
@@ -66,7 +67,6 @@ static search_dirs_type **search_tail_ptr = &search_head;
 static search_dirs_type *script_search;
 static search_arch_type *search_arch_head;
 static search_arch_type **search_arch_tail_ptr = &search_arch_head;
-
 typedef struct input_remap
 {
   const char *          pattern;  /* Pattern to match input files.  */
@@ -305,6 +305,16 @@ is_sysrooted_pathname (const char *name)
 
 /* Adds NAME to the library search path.
    Makes a copy of NAME using xmalloc().  */
+static bool script_ext_allowed(const char *name) {
+  const char *dot = strrchr(name, '.');
+  const char *want = command_line.script_ext; /* NULL = 不限制 */
+
+  if (want == NULL)
+    return true;
+  if (dot == NULL)
+    return false;
+  return filename_cmp(dot, want) == 0;
+}
 
 void
 ldfile_add_library_path (const char *name, bool cmdline)
@@ -341,6 +351,8 @@ ldfile_library_path_free (search_dirs_type **root)
       free (ent);
     }
 }
+
+static bool script_ext_allowed (const char *name);
 
 /* Try to open a BFD for a lang_input_statement.  */
 
@@ -416,6 +428,8 @@ ldfile_try_open_bfd (const char *attempt,
 		  extern FILE *yyin;
 
 		  /* Try to interpret the file as a linker script.  */
+		  if (!script_ext_allowed (attempt))
+		    return false;	/* 后缀不对，别当脚本，按原样报错 */
 		  ldfile_open_command_file (attempt);
 
 		  ldfile_assumed_script = true;

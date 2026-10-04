@@ -25,8 +25,7 @@
 
 /* Codes used for the long options with no short synonyms.  150 isn't
    special; it's just an arbitrary non-ASCII char value.  */
-enum option_values
-{
+enum option_values {
   OPTION_ASSERT = 150,
   OPTION_CALL_SHARED,
   OPTION_CREF,
@@ -95,7 +94,7 @@ enum option_values
   OPTION_WARN_ONCE,
   OPTION_WARN_SECTION_ALIGN,
   OPTION_SPLIT_BY_RELOC,
-  OPTION_SPLIT_BY_FILE ,
+  OPTION_SPLIT_BY_FILE,
   OPTION_WHOLE_ARCHIVE,
   OPTION_ADD_DT_NEEDED_FOR_DYNAMIC,
   OPTION_NO_ADD_DT_NEEDED_FOR_DYNAMIC,
@@ -471,6 +470,7 @@ enum option_values
   OPTION_NO_LITERAL_MOVEMENT,
   OPTION_ABI_WINDOWED,
   OPTION_ABI_CALL0,
+  OPTION_SCRIPT_EXT,
 };
 
 /* The initial parser states.  */

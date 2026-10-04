@@ -650,6 +650,9 @@ static const struct ld_option ld_options[] =
 		   "                                <method> is: share-unconflicted (default),\n"
 		   "                                             share-duplicated"),
     TWO_DASHES },
+	{ {"script-ext", required_argument, NULL, OPTION_SCRIPT_EXT},
+    '\0', N_("=EXT"), N_("Only treat files with this extension as linker scripts"),
+    TWO_DASHES },
 };
 
 #define OPTION_COUNT ARRAY_SIZE (ld_options)
@@ -1860,7 +1863,11 @@ parse_args (unsigned argc, char **argv)
 	  else
 	    einfo (_("%F%P: bad --ctf-share-types option: %s\n"), optarg);
 	  break;
-	}
+
+    case OPTION_SCRIPT_EXT:
+        command_line.script_ext = optarg;
+        break;
+    }
     }
 
   free (really_longopts);

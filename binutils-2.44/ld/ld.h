@@ -199,6 +199,10 @@ typedef struct
 
   /* Linker script fragment provided by the --section-order command line option.  */
   char *section_ordering_file;
+
+  /* Only treat files with this extension as linker scripts (--script-ext).
+     NULL means no restriction.  */
+  char *script_ext;
 } args_type;
 
 extern args_type command_line;
