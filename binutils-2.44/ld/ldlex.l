@@ -35,6 +35,21 @@
 #include "ldlex.h"
 #include "ldmain.h"
 #include "libiberty.h"
+#define TMK_SCRIPT_MODE_P \
+  (command_line.script_mode != NULL \
+   && strcmp (command_line.script_mode, "tmk") == 0)
+
+static int
+lowercase_keyword (int tok)
+{
+  if (TMK_SCRIPT_MODE_P)
+    {
+      yylval.token = tok;
+      return tok;
+    }
+  yylval.name = xstrdup (yytext);
+  return NAME;
+}
 
 /* The type of top-level parser input.
    yylex and yyparse (indirectly) both check this.  */
@@ -260,13 +275,13 @@ V_IDENTIFIER [*?.$_a-zA-Z\[\]\-\!\^\\]([*?.$_a-zA-Z0-9\[\]\-\!\^\\]|::)*
 <SCRIPT>"REGION_ALIAS"			{ RTOKEN(REGION_ALIAS); }
 <SCRIPT>"LD_FEATURE"			{ RTOKEN(LD_FEATURE); }
 <SCRIPT,EXPRESSION>"ORIGIN"		{ RTOKEN(ORIGIN); }
-<SCRIPT,EXPRESSION>"origin"		{ RTOKEN(ORIGIN); }
+<SCRIPT,EXPRESSION>"origin"		{ return lowercase_keyword (ORIGIN); }
 
 <SCRIPT>"VERSION"			{ RTOKEN(VERSIONK); }
 <SCRIPT,EXPRESSION>"BLOCK"		{ RTOKEN(BLOCK); }
 <SCRIPT,EXPRESSION>"BIND"		{ RTOKEN(BIND); }
 <SCRIPT,EXPRESSION>"LENGTH"		{ RTOKEN(LENGTH); }
-<SCRIPT,EXPRESSION>"length"		{ RTOKEN(LENGTH); }
+<SCRIPT,EXPRESSION>"length"		{ return lowercase_keyword (LENGTH); }
 
 <SCRIPT,EXPRESSION>"ALIGN"		{ RTOKEN(ALIGN_K); }
 <SCRIPT,EXPRESSION>"DATA_SEGMENT_ALIGN"	{ RTOKEN(DATA_SEGMENT_ALIGN); }

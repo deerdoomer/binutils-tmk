@@ -470,7 +470,7 @@ enum option_values {
   OPTION_NO_LITERAL_MOVEMENT,
   OPTION_ABI_WINDOWED,
   OPTION_ABI_CALL0,
-  OPTION_SCRIPT_EXT,
+  OPTION_SCRIPT_MODE,
 };
 
 /* The initial parser states.  */

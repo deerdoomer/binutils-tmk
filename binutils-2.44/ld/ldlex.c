@@ -1,5 +1,6 @@
+#line 2 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.c"
 
-#line 3 "../../ld/ldlex.c"
+#line 4 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -1374,8 +1375,8 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "../../ld/ldlex.l"
-#line 4 "../../ld/ldlex.l"
+#line 1 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
+#line 4 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 
 /* Copyright (C) 1991-2025 Free Software Foundation, Inc.
    Written by Steve Chamberlain of Cygnus Support.
@@ -1410,6 +1411,21 @@ char *yytext;
 #include "ldlex.h"
 #include "ldmain.h"
 #include "libiberty.h"
+#define TMK_SCRIPT_MODE_P \
+  (command_line.script_mode != NULL \
+   && strcmp (command_line.script_mode, "tmk") == 0)
+
+static int
+lowercase_keyword (int tok)
+{
+  if (TMK_SCRIPT_MODE_P)
+    {
+      yylval.token = tok;
+      return tok;
+    }
+  yylval.name = xstrdup (yytext);
+  return NAME;
+}
 
 /* The type of top-level parser input.
    yylex and yyparse (indirectly) both check this.  */
@@ -1462,9 +1478,9 @@ static void lex_warn_invalid (char *where, char *what);
 */
 #define RTOKEN(x)  {  yylval.token = x; return x; }
 
-#line 1466 "../../ld/ldlex.c"
+#line 1482 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.c"
 
-#line 1468 "../../ld/ldlex.c"
+#line 1484 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.c"
 
 #define INITIAL 0
 #define SCRIPT 1
@@ -1687,10 +1703,10 @@ YY_DECL
 		}
 
 	{
-#line 114 "../../ld/ldlex.l"
+#line 129 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 
 
-#line 117 "../../ld/ldlex.l"
+#line 132 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
   if (parser_input != input_selected)
     {
       /* The first token of the input determines the initial parser state.  */
@@ -1708,7 +1724,7 @@ YY_DECL
 	}
     }
 
-#line 1712 "../../ld/ldlex.c"
+#line 1728 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -1767,13 +1783,13 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 134 "../../ld/ldlex.l"
+#line 149 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 {
 				comment (); }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 137 "../../ld/ldlex.l"
+#line 152 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 {
 				yylval.integer = strtoull (yytext + 1, 0, 16);
 				yylval.bigint.str = NULL;
@@ -1782,7 +1798,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 143 "../../ld/ldlex.l"
+#line 158 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 {
 				   int ibase ;
 				   switch (yytext[yyleng - 1]) {
@@ -1810,7 +1826,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 167 "../../ld/ldlex.l"
+#line 182 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 {
 				  char *s = yytext;
 				  int ibase = 0;
@@ -1866,874 +1882,874 @@ YY_RULE_SETUP
   */
 case 5:
 YY_RULE_SETUP
-#line 220 "../../ld/ldlex.l"
+#line 235 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(']'); }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 221 "../../ld/ldlex.l"
+#line 236 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN('['); }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 222 "../../ld/ldlex.l"
+#line 237 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(LSHIFTEQ); }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 223 "../../ld/ldlex.l"
+#line 238 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(RSHIFTEQ); }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 224 "../../ld/ldlex.l"
+#line 239 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(OROR); }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 225 "../../ld/ldlex.l"
+#line 240 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(EQ); }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 226 "../../ld/ldlex.l"
+#line 241 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(NE); }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 227 "../../ld/ldlex.l"
+#line 242 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(GE); }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 228 "../../ld/ldlex.l"
+#line 243 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(LE); }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 229 "../../ld/ldlex.l"
+#line 244 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(LSHIFT); }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 230 "../../ld/ldlex.l"
+#line 245 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(RSHIFT); }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 231 "../../ld/ldlex.l"
+#line 246 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(PLUSEQ); }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 232 "../../ld/ldlex.l"
+#line 247 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(MINUSEQ); }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 233 "../../ld/ldlex.l"
+#line 248 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(MULTEQ); }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 234 "../../ld/ldlex.l"
+#line 249 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(DIVEQ); }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 235 "../../ld/ldlex.l"
+#line 250 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(ANDEQ); }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 236 "../../ld/ldlex.l"
+#line 251 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(OREQ); }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 237 "../../ld/ldlex.l"
+#line 252 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(XOREQ); }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 238 "../../ld/ldlex.l"
+#line 253 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(ANDAND); }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 239 "../../ld/ldlex.l"
+#line 254 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN('>'); }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 240 "../../ld/ldlex.l"
+#line 255 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(','); }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 241 "../../ld/ldlex.l"
+#line 256 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN('&'); }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 242 "../../ld/ldlex.l"
+#line 257 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN('|'); }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 243 "../../ld/ldlex.l"
+#line 258 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN('~'); }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 244 "../../ld/ldlex.l"
+#line 259 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN('!'); }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 245 "../../ld/ldlex.l"
+#line 260 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN('?'); }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 246 "../../ld/ldlex.l"
+#line 261 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN('*'); }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 247 "../../ld/ldlex.l"
+#line 262 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN('+'); }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 248 "../../ld/ldlex.l"
+#line 263 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN('-'); }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 249 "../../ld/ldlex.l"
+#line 264 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN('/'); }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 250 "../../ld/ldlex.l"
+#line 265 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN('%'); }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 251 "../../ld/ldlex.l"
+#line 266 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN('<'); }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 252 "../../ld/ldlex.l"
+#line 267 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN('^'); }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 253 "../../ld/ldlex.l"
+#line 268 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN('='); }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 254 "../../ld/ldlex.l"
+#line 269 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN('}'); }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 255 "../../ld/ldlex.l"
+#line 270 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN('{'); }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 256 "../../ld/ldlex.l"
+#line 271 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(')'); }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 257 "../../ld/ldlex.l"
+#line 272 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN('('); }
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 258 "../../ld/ldlex.l"
+#line 273 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(':'); }
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 259 "../../ld/ldlex.l"
+#line 274 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(';'); }
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 260 "../../ld/ldlex.l"
+#line 275 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(MEMORY); }
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 261 "../../ld/ldlex.l"
+#line 276 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(REGION_ALIAS); }
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 262 "../../ld/ldlex.l"
+#line 277 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(LD_FEATURE); }
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 263 "../../ld/ldlex.l"
+#line 278 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(ORIGIN); }
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 264 "../../ld/ldlex.l"
-{ RTOKEN(ORIGIN); }
+#line 279 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
+{ return lowercase_keyword (ORIGIN); }
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 266 "../../ld/ldlex.l"
+#line 281 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(VERSIONK); }
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 267 "../../ld/ldlex.l"
+#line 282 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(BLOCK); }
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 268 "../../ld/ldlex.l"
+#line 283 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(BIND); }
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 269 "../../ld/ldlex.l"
+#line 284 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(LENGTH); }
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 270 "../../ld/ldlex.l"
-{ RTOKEN(LENGTH); }
+#line 285 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
+{ return lowercase_keyword (LENGTH); }
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 272 "../../ld/ldlex.l"
+#line 287 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(ALIGN_K); }
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 273 "../../ld/ldlex.l"
+#line 288 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(DATA_SEGMENT_ALIGN); }
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 274 "../../ld/ldlex.l"
+#line 289 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(DATA_SEGMENT_RELRO_END); }
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 275 "../../ld/ldlex.l"
+#line 290 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(DATA_SEGMENT_END); }
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
-#line 276 "../../ld/ldlex.l"
+#line 291 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(ADDR); }
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
-#line 277 "../../ld/ldlex.l"
+#line 292 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(LOADADDR); }
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
-#line 278 "../../ld/ldlex.l"
+#line 293 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(ALIGNOF); }
 	YY_BREAK
 case 62:
 YY_RULE_SETUP
-#line 279 "../../ld/ldlex.l"
+#line 294 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(ABSOLUTE); }
 	YY_BREAK
 case 63:
 YY_RULE_SETUP
-#line 280 "../../ld/ldlex.l"
+#line 295 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(MAX_K); }
 	YY_BREAK
 case 64:
 YY_RULE_SETUP
-#line 281 "../../ld/ldlex.l"
+#line 296 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(MIN_K); }
 	YY_BREAK
 case 65:
 YY_RULE_SETUP
-#line 282 "../../ld/ldlex.l"
+#line 297 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(LOG2CEIL); }
 	YY_BREAK
 case 66:
 YY_RULE_SETUP
-#line 283 "../../ld/ldlex.l"
+#line 298 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(ASSERT_K); }
 	YY_BREAK
 case 67:
 YY_RULE_SETUP
-#line 284 "../../ld/ldlex.l"
+#line 299 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(ENTRY); }
 	YY_BREAK
 case 68:
 YY_RULE_SETUP
-#line 285 "../../ld/ldlex.l"
+#line 300 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(EXTERN); }
 	YY_BREAK
 case 69:
 YY_RULE_SETUP
-#line 286 "../../ld/ldlex.l"
+#line 301 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(NEXT); }
 	YY_BREAK
 case 70:
 YY_RULE_SETUP
-#line 287 "../../ld/ldlex.l"
+#line 302 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(SIZEOF_HEADERS); }
 	YY_BREAK
 case 71:
 YY_RULE_SETUP
-#line 288 "../../ld/ldlex.l"
+#line 303 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(SEGMENT_START); }
 	YY_BREAK
 case 72:
 YY_RULE_SETUP
-#line 289 "../../ld/ldlex.l"
+#line 304 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(MAP); }
 	YY_BREAK
 case 73:
 YY_RULE_SETUP
-#line 290 "../../ld/ldlex.l"
+#line 305 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(SIZEOF); }
 	YY_BREAK
 case 74:
 YY_RULE_SETUP
-#line 291 "../../ld/ldlex.l"
+#line 306 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(TARGET_K); }
 	YY_BREAK
 case 75:
 YY_RULE_SETUP
-#line 292 "../../ld/ldlex.l"
+#line 307 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(SEARCH_DIR); }
 	YY_BREAK
 case 76:
 YY_RULE_SETUP
-#line 293 "../../ld/ldlex.l"
+#line 308 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(OUTPUT); }
 	YY_BREAK
 case 77:
 YY_RULE_SETUP
-#line 294 "../../ld/ldlex.l"
+#line 309 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(INPUT); }
 	YY_BREAK
 case 78:
 YY_RULE_SETUP
-#line 295 "../../ld/ldlex.l"
+#line 310 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(GROUP); }
 	YY_BREAK
 case 79:
 YY_RULE_SETUP
-#line 296 "../../ld/ldlex.l"
+#line 311 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(AS_NEEDED); }
 	YY_BREAK
 case 80:
 YY_RULE_SETUP
-#line 297 "../../ld/ldlex.l"
+#line 312 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(DEFINED); }
 	YY_BREAK
 case 81:
 YY_RULE_SETUP
-#line 298 "../../ld/ldlex.l"
+#line 313 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(CREATE_OBJECT_SYMBOLS); }
 	YY_BREAK
 case 82:
 YY_RULE_SETUP
-#line 299 "../../ld/ldlex.l"
+#line 314 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(CONSTRUCTORS); }
 	YY_BREAK
 case 83:
 YY_RULE_SETUP
-#line 300 "../../ld/ldlex.l"
+#line 315 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(FORCE_COMMON_ALLOCATION); }
 	YY_BREAK
 case 84:
 YY_RULE_SETUP
-#line 301 "../../ld/ldlex.l"
+#line 316 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(FORCE_GROUP_ALLOCATION); }
 	YY_BREAK
 case 85:
 YY_RULE_SETUP
-#line 302 "../../ld/ldlex.l"
+#line 317 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(INHIBIT_COMMON_ALLOCATION); }
 	YY_BREAK
 case 86:
 YY_RULE_SETUP
-#line 303 "../../ld/ldlex.l"
+#line 318 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(SECTIONS); }
 	YY_BREAK
 case 87:
 YY_RULE_SETUP
-#line 304 "../../ld/ldlex.l"
+#line 319 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(INSERT_K); }
 	YY_BREAK
 case 88:
 YY_RULE_SETUP
-#line 305 "../../ld/ldlex.l"
+#line 320 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(AFTER); }
 	YY_BREAK
 case 89:
 YY_RULE_SETUP
-#line 306 "../../ld/ldlex.l"
+#line 321 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(BEFORE); }
 	YY_BREAK
 case 90:
 YY_RULE_SETUP
-#line 307 "../../ld/ldlex.l"
+#line 322 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(FILL); }
 	YY_BREAK
 case 91:
 YY_RULE_SETUP
-#line 308 "../../ld/ldlex.l"
+#line 323 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(STARTUP); }
 	YY_BREAK
 case 92:
 YY_RULE_SETUP
-#line 309 "../../ld/ldlex.l"
+#line 324 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(OUTPUT_FORMAT); }
 	YY_BREAK
 case 93:
 YY_RULE_SETUP
-#line 310 "../../ld/ldlex.l"
+#line 325 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(OUTPUT_ARCH); }
 	YY_BREAK
 case 94:
 YY_RULE_SETUP
-#line 311 "../../ld/ldlex.l"
+#line 326 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(HLL); }
 	YY_BREAK
 case 95:
 YY_RULE_SETUP
-#line 312 "../../ld/ldlex.l"
+#line 327 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(SYSLIB); }
 	YY_BREAK
 case 96:
 YY_RULE_SETUP
-#line 313 "../../ld/ldlex.l"
+#line 328 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(FLOAT); }
 	YY_BREAK
 case 97:
 YY_RULE_SETUP
-#line 314 "../../ld/ldlex.l"
+#line 329 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(QUAD); }
 	YY_BREAK
 case 98:
 YY_RULE_SETUP
-#line 315 "../../ld/ldlex.l"
+#line 330 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(SQUAD); }
 	YY_BREAK
 case 99:
 YY_RULE_SETUP
-#line 316 "../../ld/ldlex.l"
+#line 331 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(LONG); }
 	YY_BREAK
 case 100:
 YY_RULE_SETUP
-#line 317 "../../ld/ldlex.l"
+#line 332 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(SHORT); }
 	YY_BREAK
 case 101:
 YY_RULE_SETUP
-#line 318 "../../ld/ldlex.l"
+#line 333 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(BYTE); }
 	YY_BREAK
 case 102:
 YY_RULE_SETUP
-#line 319 "../../ld/ldlex.l"
+#line 334 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(ASCIZ); }
 	YY_BREAK
 case 103:
 YY_RULE_SETUP
-#line 320 "../../ld/ldlex.l"
+#line 335 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(LINKER_VERSION); }
 	YY_BREAK
 case 104:
 YY_RULE_SETUP
-#line 321 "../../ld/ldlex.l"
+#line 336 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(NOFLOAT); }
 	YY_BREAK
 case 105:
 YY_RULE_SETUP
-#line 322 "../../ld/ldlex.l"
+#line 337 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(NOCROSSREFS); }
 	YY_BREAK
 case 106:
 YY_RULE_SETUP
-#line 323 "../../ld/ldlex.l"
+#line 338 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(NOCROSSREFS_TO); }
 	YY_BREAK
 case 107:
 YY_RULE_SETUP
-#line 324 "../../ld/ldlex.l"
+#line 339 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(OVERLAY); }
 	YY_BREAK
 case 108:
 YY_RULE_SETUP
-#line 325 "../../ld/ldlex.l"
+#line 340 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(SORT_BY_NAME); }
 	YY_BREAK
 case 109:
 YY_RULE_SETUP
-#line 326 "../../ld/ldlex.l"
+#line 341 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(SORT_BY_ALIGNMENT); }
 	YY_BREAK
 case 110:
 YY_RULE_SETUP
-#line 327 "../../ld/ldlex.l"
+#line 342 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(SORT_BY_NAME); }
 	YY_BREAK
 case 111:
 YY_RULE_SETUP
-#line 328 "../../ld/ldlex.l"
+#line 343 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(SORT_BY_INIT_PRIORITY); }
 	YY_BREAK
 case 112:
 YY_RULE_SETUP
-#line 329 "../../ld/ldlex.l"
+#line 344 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(SORT_NONE); }
 	YY_BREAK
 case 113:
 YY_RULE_SETUP
-#line 330 "../../ld/ldlex.l"
+#line 345 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(REVERSE); }
 	YY_BREAK
 case 114:
 YY_RULE_SETUP
-#line 331 "../../ld/ldlex.l"
+#line 346 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(NOLOAD); }
 	YY_BREAK
 case 115:
 YY_RULE_SETUP
-#line 332 "../../ld/ldlex.l"
+#line 347 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(READONLY); }
 	YY_BREAK
 case 116:
 YY_RULE_SETUP
-#line 333 "../../ld/ldlex.l"
+#line 348 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(DSECT); }
 	YY_BREAK
 case 117:
 YY_RULE_SETUP
-#line 334 "../../ld/ldlex.l"
+#line 349 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(COPY); }
 	YY_BREAK
 case 118:
 YY_RULE_SETUP
-#line 335 "../../ld/ldlex.l"
+#line 350 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(INFO); }
 	YY_BREAK
 case 119:
 YY_RULE_SETUP
-#line 336 "../../ld/ldlex.l"
+#line 351 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(TYPE); }
 	YY_BREAK
 case 120:
 YY_RULE_SETUP
-#line 337 "../../ld/ldlex.l"
+#line 352 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(ONLY_IF_RO); }
 	YY_BREAK
 case 121:
 YY_RULE_SETUP
-#line 338 "../../ld/ldlex.l"
+#line 353 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(ONLY_IF_RW); }
 	YY_BREAK
 case 122:
 YY_RULE_SETUP
-#line 339 "../../ld/ldlex.l"
+#line 354 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(SPECIAL); }
 	YY_BREAK
 case 123:
 YY_RULE_SETUP
-#line 340 "../../ld/ldlex.l"
+#line 355 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(ORIGIN); }
 	YY_BREAK
 case 124:
 YY_RULE_SETUP
-#line 341 "../../ld/ldlex.l"
+#line 356 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(ORIGIN); }
 	YY_BREAK
 case 125:
 YY_RULE_SETUP
-#line 342 "../../ld/ldlex.l"
+#line 357 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(LENGTH); }
 	YY_BREAK
 case 126:
 YY_RULE_SETUP
-#line 343 "../../ld/ldlex.l"
+#line 358 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(LENGTH); }
 	YY_BREAK
 case 127:
 YY_RULE_SETUP
-#line 344 "../../ld/ldlex.l"
+#line 359 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(INPUT_SECTION_FLAGS); }
 	YY_BREAK
 case 128:
 YY_RULE_SETUP
-#line 345 "../../ld/ldlex.l"
+#line 360 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(INCLUDE);}
 	YY_BREAK
 case 129:
 YY_RULE_SETUP
-#line 346 "../../ld/ldlex.l"
+#line 361 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(PHDRS); }
 	YY_BREAK
 case 130:
 YY_RULE_SETUP
-#line 347 "../../ld/ldlex.l"
+#line 362 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(AT);}
 	YY_BREAK
 case 131:
 YY_RULE_SETUP
-#line 348 "../../ld/ldlex.l"
+#line 363 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(ALIGN_WITH_INPUT);}
 	YY_BREAK
 case 132:
 YY_RULE_SETUP
-#line 349 "../../ld/ldlex.l"
+#line 364 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(SUBALIGN);}
 	YY_BREAK
 case 133:
 YY_RULE_SETUP
-#line 350 "../../ld/ldlex.l"
+#line 365 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(HIDDEN); }
 	YY_BREAK
 case 134:
 YY_RULE_SETUP
-#line 351 "../../ld/ldlex.l"
+#line 366 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(PROVIDE); }
 	YY_BREAK
 case 135:
 YY_RULE_SETUP
-#line 352 "../../ld/ldlex.l"
+#line 367 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(PROVIDE_HIDDEN); }
 	YY_BREAK
 case 136:
 YY_RULE_SETUP
-#line 353 "../../ld/ldlex.l"
+#line 368 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(KEEP); }
 	YY_BREAK
 case 137:
 YY_RULE_SETUP
-#line 354 "../../ld/ldlex.l"
+#line 369 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(EXCLUDE_FILE); }
 	YY_BREAK
 case 138:
 YY_RULE_SETUP
-#line 355 "../../ld/ldlex.l"
+#line 370 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(CONSTANT);}
 	YY_BREAK
 case 139:
 /* rule 139 can match eol */
 YY_RULE_SETUP
-#line 357 "../../ld/ldlex.l"
+#line 372 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { ++ lineno; }
 	YY_BREAK
 case 140:
 /* rule 140 can match eol */
 YY_RULE_SETUP
-#line 358 "../../ld/ldlex.l"
+#line 373 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { ++ lineno;  RTOKEN(NEWLINE); }
 	YY_BREAK
 case 141:
 YY_RULE_SETUP
-#line 359 "../../ld/ldlex.l"
+#line 374 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { /* Mri comment line */ }
 	YY_BREAK
 case 142:
 YY_RULE_SETUP
-#line 360 "../../ld/ldlex.l"
+#line 375 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { /* Mri comment line */ }
 	YY_BREAK
 case 143:
 YY_RULE_SETUP
-#line 361 "../../ld/ldlex.l"
+#line 376 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(ENDWORD); }
 	YY_BREAK
 case 144:
 YY_RULE_SETUP
-#line 362 "../../ld/ldlex.l"
+#line 377 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(ABSOLUTE); }
 	YY_BREAK
 case 145:
 YY_RULE_SETUP
-#line 363 "../../ld/ldlex.l"
+#line 378 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(ALIGNMOD);}
 	YY_BREAK
 case 146:
 YY_RULE_SETUP
-#line 364 "../../ld/ldlex.l"
+#line 379 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(ALIGN_K);}
 	YY_BREAK
 case 147:
 YY_RULE_SETUP
-#line 365 "../../ld/ldlex.l"
+#line 380 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(CHIP); }
 	YY_BREAK
 case 148:
 YY_RULE_SETUP
-#line 366 "../../ld/ldlex.l"
+#line 381 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(BASE); }
 	YY_BREAK
 case 149:
 YY_RULE_SETUP
-#line 367 "../../ld/ldlex.l"
+#line 382 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(ALIAS); }
 	YY_BREAK
 case 150:
 YY_RULE_SETUP
-#line 368 "../../ld/ldlex.l"
+#line 383 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(TRUNCATE); }
 	YY_BREAK
 case 151:
 YY_RULE_SETUP
-#line 369 "../../ld/ldlex.l"
+#line 384 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(LOAD); }
 	YY_BREAK
 case 152:
 YY_RULE_SETUP
-#line 370 "../../ld/ldlex.l"
+#line 385 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(PUBLIC); }
 	YY_BREAK
 case 153:
 YY_RULE_SETUP
-#line 371 "../../ld/ldlex.l"
+#line 386 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(ORDER); }
 	YY_BREAK
 case 154:
 YY_RULE_SETUP
-#line 372 "../../ld/ldlex.l"
+#line 387 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(NAMEWORD); }
 	YY_BREAK
 case 155:
 YY_RULE_SETUP
-#line 373 "../../ld/ldlex.l"
+#line 388 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(FORMAT); }
 	YY_BREAK
 case 156:
 YY_RULE_SETUP
-#line 374 "../../ld/ldlex.l"
+#line 389 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(CASE); }
 	YY_BREAK
 case 157:
 YY_RULE_SETUP
-#line 375 "../../ld/ldlex.l"
+#line 390 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(START); }
 	YY_BREAK
 case 158:
 YY_RULE_SETUP
-#line 376 "../../ld/ldlex.l"
+#line 391 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(LIST); /* LIST and ignore to end of line */ }
 	YY_BREAK
 case 159:
 YY_RULE_SETUP
-#line 377 "../../ld/ldlex.l"
+#line 392 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(SECT); }
 	YY_BREAK
 case 160:
 YY_RULE_SETUP
-#line 378 "../../ld/ldlex.l"
+#line 393 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(ENDWORD); }
 	YY_BREAK
 case 161:
 YY_RULE_SETUP
-#line 379 "../../ld/ldlex.l"
+#line 394 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(ABSOLUTE); }
 	YY_BREAK
 case 162:
 YY_RULE_SETUP
-#line 380 "../../ld/ldlex.l"
+#line 395 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(ALIGNMOD);}
 	YY_BREAK
 case 163:
 YY_RULE_SETUP
-#line 381 "../../ld/ldlex.l"
+#line 396 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(ALIGN_K);}
 	YY_BREAK
 case 164:
 YY_RULE_SETUP
-#line 382 "../../ld/ldlex.l"
+#line 397 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(CHIP); }
 	YY_BREAK
 case 165:
 YY_RULE_SETUP
-#line 383 "../../ld/ldlex.l"
+#line 398 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(BASE); }
 	YY_BREAK
 case 166:
 YY_RULE_SETUP
-#line 384 "../../ld/ldlex.l"
+#line 399 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(ALIAS); }
 	YY_BREAK
 case 167:
 YY_RULE_SETUP
-#line 385 "../../ld/ldlex.l"
+#line 400 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(TRUNCATE); }
 	YY_BREAK
 case 168:
 YY_RULE_SETUP
-#line 386 "../../ld/ldlex.l"
+#line 401 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(LOAD); }
 	YY_BREAK
 case 169:
 YY_RULE_SETUP
-#line 387 "../../ld/ldlex.l"
+#line 402 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(PUBLIC); }
 	YY_BREAK
 case 170:
 YY_RULE_SETUP
-#line 388 "../../ld/ldlex.l"
+#line 403 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(ORDER); }
 	YY_BREAK
 case 171:
 YY_RULE_SETUP
-#line 389 "../../ld/ldlex.l"
+#line 404 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(NAMEWORD); }
 	YY_BREAK
 case 172:
 YY_RULE_SETUP
-#line 390 "../../ld/ldlex.l"
+#line 405 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(FORMAT); }
 	YY_BREAK
 case 173:
 YY_RULE_SETUP
-#line 391 "../../ld/ldlex.l"
+#line 406 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(CASE); }
 	YY_BREAK
 case 174:
 YY_RULE_SETUP
-#line 392 "../../ld/ldlex.l"
+#line 407 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(EXTERN); }
 	YY_BREAK
 case 175:
 YY_RULE_SETUP
-#line 393 "../../ld/ldlex.l"
+#line 408 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(START); }
 	YY_BREAK
 case 176:
 YY_RULE_SETUP
-#line 394 "../../ld/ldlex.l"
+#line 409 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(LIST); /* LIST and ignore to end of line */ }
 	YY_BREAK
 case 177:
 YY_RULE_SETUP
-#line 395 "../../ld/ldlex.l"
+#line 410 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(SECT); }
 	YY_BREAK
 case 178:
 YY_RULE_SETUP
-#line 397 "../../ld/ldlex.l"
+#line 412 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 {
 /* Filename without commas, needed to parse mri stuff */
 				  yylval.name = xstrdup (yytext);
@@ -2742,7 +2758,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 179:
 YY_RULE_SETUP
-#line 404 "../../ld/ldlex.l"
+#line 419 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 {
 				  yylval.name = xstrdup (yytext);
 				  return NAME;
@@ -2750,7 +2766,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 180:
 YY_RULE_SETUP
-#line 408 "../../ld/ldlex.l"
+#line 423 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 {
 /* Filename to be prefixed by --sysroot or when non-sysrooted, nothing.  */
 				  yylval.name = xstrdup (yytext);
@@ -2759,7 +2775,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 181:
 YY_RULE_SETUP
-#line 413 "../../ld/ldlex.l"
+#line 428 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 {
 				  yylval.name = xstrdup (yytext + 2);
 				  return LNAME;
@@ -2767,7 +2783,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 182:
 YY_RULE_SETUP
-#line 417 "../../ld/ldlex.l"
+#line 432 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 {
 				  yylval.name = xstrdup (yytext);
 				  return NAME;
@@ -2777,7 +2793,7 @@ YY_RULE_SETUP
      section before /DISCARD/ interpreting the '/' as a divide.  */
 case 183:
 YY_RULE_SETUP
-#line 423 "../../ld/ldlex.l"
+#line 438 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 {
 				  yylval.name = xstrdup (yytext);
 				  return NAME;
@@ -2785,7 +2801,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 184:
 YY_RULE_SETUP
-#line 427 "../../ld/ldlex.l"
+#line 442 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 {
 		/* Annoyingly, this pattern can match comments, and we have
 		   longest match issues to consider.  So if the first two
@@ -2806,7 +2822,7 @@ YY_RULE_SETUP
 case 185:
 /* rule 185 can match eol */
 YY_RULE_SETUP
-#line 444 "../../ld/ldlex.l"
+#line 459 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 {
 		/* No matter the state, quotes give what's inside.  */
 		yylval.name = xmemdup (yytext + 1, yyleng - 2, yyleng - 1);
@@ -2816,62 +2832,62 @@ YY_RULE_SETUP
 case 186:
 /* rule 186 can match eol */
 YY_RULE_SETUP
-#line 450 "../../ld/ldlex.l"
+#line 465 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 {
 				lineno++; }
 	YY_BREAK
 case 187:
 YY_RULE_SETUP
-#line 452 "../../ld/ldlex.l"
+#line 467 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 {
 				/* Eat up whitespace */ }
 	YY_BREAK
 case 188:
 YY_RULE_SETUP
-#line 454 "../../ld/ldlex.l"
+#line 469 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 {
 				/* Eat up comments */ }
 	YY_BREAK
 case 189:
 YY_RULE_SETUP
-#line 457 "../../ld/ldlex.l"
+#line 472 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { return *yytext; }
 	YY_BREAK
 case 190:
 YY_RULE_SETUP
-#line 459 "../../ld/ldlex.l"
+#line 474 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(GLOBAL); }
 	YY_BREAK
 case 191:
 YY_RULE_SETUP
-#line 461 "../../ld/ldlex.l"
+#line 476 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(LOCAL); }
 	YY_BREAK
 case 192:
 YY_RULE_SETUP
-#line 463 "../../ld/ldlex.l"
+#line 478 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { RTOKEN(EXTERN); }
 	YY_BREAK
 case 193:
 YY_RULE_SETUP
-#line 465 "../../ld/ldlex.l"
+#line 480 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { yylval.name = xstrdup (yytext);
 				  return VERS_IDENTIFIER; }
 	YY_BREAK
 case 194:
 YY_RULE_SETUP
-#line 468 "../../ld/ldlex.l"
+#line 483 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { yylval.name = xstrdup (yytext);
 				  return VERS_TAG; }
 	YY_BREAK
 case 195:
 YY_RULE_SETUP
-#line 471 "../../ld/ldlex.l"
+#line 486 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { BEGIN(VERS_SCRIPT); return *yytext; }
 	YY_BREAK
 case 196:
 YY_RULE_SETUP
-#line 473 "../../ld/ldlex.l"
+#line 488 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { BEGIN(VERS_NODE);
 				  vers_node_nesting = 0;
 				  return *yytext;
@@ -2879,17 +2895,17 @@ YY_RULE_SETUP
 	YY_BREAK
 case 197:
 YY_RULE_SETUP
-#line 477 "../../ld/ldlex.l"
+#line 492 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { return *yytext; }
 	YY_BREAK
 case 198:
 YY_RULE_SETUP
-#line 478 "../../ld/ldlex.l"
+#line 493 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { vers_node_nesting++; return *yytext; }
 	YY_BREAK
 case 199:
 YY_RULE_SETUP
-#line 479 "../../ld/ldlex.l"
+#line 494 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 { if (--vers_node_nesting < 0)
 				    BEGIN(VERS_SCRIPT);
 				  return *yytext;
@@ -2904,7 +2920,7 @@ case YY_STATE_EOF(WILD):
 case YY_STATE_EOF(VERS_START):
 case YY_STATE_EOF(VERS_SCRIPT):
 case YY_STATE_EOF(VERS_NODE):
-#line 484 "../../ld/ldlex.l"
+#line 499 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 {
   yy_delete_buffer (YY_CURRENT_BUFFER);
   include_stack_ptr--;
@@ -2924,20 +2940,20 @@ case YY_STATE_EOF(VERS_NODE):
 	YY_BREAK
 case 200:
 YY_RULE_SETUP
-#line 501 "../../ld/ldlex.l"
+#line 516 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 lex_warn_invalid (_(" in script"), yytext);
 	YY_BREAK
 case 201:
 YY_RULE_SETUP
-#line 502 "../../ld/ldlex.l"
+#line 517 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 lex_warn_invalid (_(" in expression"), yytext);
 	YY_BREAK
 case 202:
 YY_RULE_SETUP
-#line 504 "../../ld/ldlex.l"
+#line 519 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 ECHO;
 	YY_BREAK
-#line 2941 "../../ld/ldlex.c"
+#line 2957 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.c"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -3903,7 +3919,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 504 "../../ld/ldlex.l"
+#line 519 "/app/jmcomic/binutils-tmk/binutils-2.44/ld/ldlex.l"
 
 
 
